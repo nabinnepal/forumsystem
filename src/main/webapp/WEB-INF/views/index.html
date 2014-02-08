@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="forums" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Forums</title>
+    <link th:href="@{/style/site.css}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" th:src="@{/script/angular.js}" />
+</head>
+<body>
+    <section>
+        <ul>
+            <li ng-repeat="forum in forums">
+                {{forum.title}}
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
