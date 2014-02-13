@@ -3,5 +3,14 @@ body {
 }
 
 .forumsList {
+    list-style-type : none;
+}
 
+.forumListItem {
+    clear:both;
+}
+
+.forumItem {
+    float : left;
+    margin-right: 10px;
 }

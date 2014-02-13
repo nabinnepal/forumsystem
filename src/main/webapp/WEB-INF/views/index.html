@@ -2,7 +2,7 @@
 <html ng-app="nepForum" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Forums</title>
-    <!--<link th:href="@{/style/site.css}" rel="stylesheet" type="text/css" />-->
+    <link th:href="@{/style/site.css}" rel="stylesheet" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-resource.js"></script>
     <script th:src="@{/scripts/app.js}"></script>
@@ -10,9 +10,12 @@
 </head>
 <body>
 <section>
-    <ul ng-controller="forumCtrl">
-        <li ng-repeat="forum in forums">
-            {{forum.title}}
+    <h1>Active Threads</h1>
+    <ul class="forumsList" ng-controller="forumCtrl">
+        <li ng-repeat="forum in forums" class="forumListItem">
+            <div class="forumItem">{{forum.title}}</div>
+            <div class="forumItem">{{forum.description}}</div>
+            <div class="forumItem"><a href="/forumsystem/forums/{{forum.id}}">View Details</a></div>
         </li>
     </ul>
 </section>

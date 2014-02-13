@@ -12,6 +12,7 @@
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/static/" />
     <mvc:resources mapping="/scripts/**" location="/scripts/" />
+    <mvc:resources mapping="/style/**" location="/style/" />
     <context:component-scan base-package="controllers"/>
 
 

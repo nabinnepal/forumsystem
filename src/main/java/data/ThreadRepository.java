@@ -1,8 +1,8 @@
 package data;
 
-import java.util.Map;
+import Entities.Thread;
 
 public interface ThreadRepository {
-    Iterable<Map<String, Object>> findAll();
-    Map<String, Object> findThreadById(final String id);
+    Iterable<Thread> findAll();
+    Thread findThreadById(final String id);
 }

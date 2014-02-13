@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Map;
-
-import static com.google.common.collect.ImmutableMap.of;
 
 @Controller
 public class ForumController {
@@ -21,19 +18,21 @@ public class ForumController {
         this.forumRepository = forumRepository;
     }
 
-    @RequestMapping(value= "/allforums")
-    public @ResponseBody Iterable<Map<String,Object>> getForums(){
-        return forumRepository.findAll();
+    @RequestMapping("/forums")
+    public String getForumTemplate(){
+        return "index";
     }
 
     @RequestMapping(value="/forums/{id}")
     public ModelAndView getForumById(@PathVariable(value="id") String id){
-        Map<String, Object> threadDetails = forumRepository.findThreadById(id);
-        return new ModelAndView("details", "forumDetails", threadDetails);
+        Entities.Thread threadDetails = forumRepository.findThreadById(id);
+        if(threadDetails != null)
+            return new ModelAndView("details", "forumDetails", threadDetails);
+        throw new ResourceNotFoundException();
     }
 
-    @RequestMapping("/forums")
-    public String getForumTemplate(){
-        return "index";
+    @RequestMapping(value= "/allforums")
+    public @ResponseBody Iterable<Entities.Thread> getForums(){
+        return forumRepository.findAll();
     }
 }
