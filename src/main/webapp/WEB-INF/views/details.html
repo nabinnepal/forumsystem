@@ -10,9 +10,15 @@
 </head>
 <body>
 <section>
-    <ul ng-controller="forumCtrl">
+    <ul class="forumsList" ng-controller="forumCtrl">
         <li ng-repeat="forum in forums">
             {{forum.title}}
+        </li>
+        <li ng-repeat="forum in forums">
+            {{forum.description}}
+        </li>
+        <li ng-repeat="forum in forums">
+            <a href="/forumsystem/forums/{{forum.title}}">View Details</a>
         </li>
     </ul>
 </section>

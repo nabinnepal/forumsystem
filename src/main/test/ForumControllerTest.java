@@ -1,6 +1,6 @@
 import com.google.common.collect.Lists;
 import controllers.ForumController;
-import data.ForumRepository;
+import data.ThreadRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -18,15 +18,13 @@ import static org.mockito.Mockito.when;
 public class ForumControllerTest {
 
     @Mock
-    ForumRepository repository;
+    ThreadRepository repository;
 
     @Test
     public void should_get_all_forums(){
         when(repository.findAll()).thenReturn(Lists.<Map<String,Object>>newArrayList(of("title", (Object) "test", "description", "Description body")));
         ForumController controller = new ForumController(repository);
-        ResponseEntity result = controller.getForums();
-        Iterable<Map<String, Object>> resultBody = (Iterable<Map<String, Object>>) result.getBody();
+        Iterable<Map<String, Object>> resultBody = controller.getForums();
         assertEquals(true, resultBody.iterator().hasNext());
-        assertEquals(HttpStatus.OK, result.getStatusCode());
     }
 }

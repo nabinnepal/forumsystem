@@ -1,30 +1,39 @@
 package controllers;
 
-import com.google.common.collect.ImmutableMap;
-import data.ForumRepository;
+import data.ThreadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
 import static com.google.common.collect.ImmutableMap.of;
 
 @Controller
-@RequestMapping("/forums")
 public class ForumController {
-    private ForumRepository forumRepository;
+    private ThreadRepository forumRepository;
 
     @Autowired
-    public ForumController(ForumRepository forumRepository){
+    public ForumController(ThreadRepository forumRepository){
         this.forumRepository = forumRepository;
     }
-    @RequestMapping("/")
-    public ResponseEntity getForums(){
-        Iterable<Map<String,Object>> all = forumRepository.findAll();
-        ImmutableMap<String,Iterable<Map<String,Object>>> forums = of("forums", all);
-        return new ResponseEntity(all, HttpStatus.OK);
+
+    @RequestMapping(value= "/allforums")
+    public @ResponseBody Iterable<Map<String,Object>> getForums(){
+        return forumRepository.findAll();
+    }
+
+    @RequestMapping(value="/forums/{id}")
+    public ModelAndView getForumById(@PathVariable(value="id") String id){
+        Map<String, Object> threadDetails = forumRepository.findThreadById(id);
+        return new ModelAndView("details", "forumDetails", threadDetails);
+    }
+
+    @RequestMapping("/forums")
+    public String getForumTemplate(){
+        return "index";
     }
 }

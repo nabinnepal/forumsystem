@@ -11,7 +11,8 @@
 
     <mvc:annotation-driven />
     <mvc:resources mapping="/resources/**" location="/static/" />
-    <context:component-scan base-package="springWebApp"/>
+    <mvc:resources mapping="/scripts/**" location="/scripts/" />
+    <context:component-scan base-package="controllers"/>
 
 
     <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
@@ -28,6 +29,6 @@
         <property name="templateEngine" ref="templateEngine" />
     </bean>
 
-    <bean id="forumRepository" class="data.DefaultForumRepository" />
+    <bean id="forumRepository" class="data.DefaultThreadRepository" />
 
 </beans>
