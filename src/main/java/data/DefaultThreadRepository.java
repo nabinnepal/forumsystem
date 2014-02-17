@@ -23,7 +23,7 @@ public class DefaultThreadRepository implements ThreadRepository {
             public boolean apply(Thread input) {
                 return input.getId()== Integer.valueOf(id);
             }
-        });
+        }, null);
     }
 
     private List<Thread> threads(){
