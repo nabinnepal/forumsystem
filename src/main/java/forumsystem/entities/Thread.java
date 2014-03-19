@@ -1,4 +1,4 @@
-package Entities;
+package forumsystem.entities;
 
 /**
  * Created by Administrator on 2/13/14.

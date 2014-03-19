@@ -1,6 +1,6 @@
-package data;
+package forumsystem.data;
 
-import Entities.Thread;
+import forumsystem.entities.Thread;
 
 public interface ThreadRepository {
     Iterable<Thread> findAll();

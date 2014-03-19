@@ -1,27 +1,27 @@
-package data;
+package forumsystem.data;
 
-import Entities.*;
-import Entities.Thread;
+import forumsystem.entities.Thread;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
-import static com.google.common.collect.ImmutableMap.of;
+import static com.google.common.collect.Iterables.find;
 import static com.google.common.collect.Lists.newArrayList;
+import static java.lang.Integer.valueOf;
 
+
+@Repository
 public class DefaultThreadRepository implements ThreadRepository {
-    public Iterable<Entities.Thread> findAll(){
+    public Iterable<forumsystem.entities.Thread> findAll(){
         return threads();
     }
 
     public Thread findThreadById(final String id){
-        return Iterables.find(threads(), new Predicate<Thread>() {
+        return find(threads(), new Predicate<Thread>() {
             @Override
             public boolean apply(Thread input) {
-                return input.getId()== Integer.valueOf(id);
+                return input.getId() == valueOf(id);
             }
         }, null);
     }

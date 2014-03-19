@@ -1,8 +1,8 @@
-import Entities.Thread;
+import forumsystem.entities.Thread;
 import com.google.common.collect.Lists;
-import controllers.ForumController;
-import controllers.ResourceNotFoundException;
-import data.ThreadRepository;
+import forumsystem.controllers.ForumController;
+import forumsystem.controllers.ResourceNotFoundException;
+import forumsystem.data.ThreadRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
